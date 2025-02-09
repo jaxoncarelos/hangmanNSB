@@ -12,10 +12,11 @@ function selectrandomword() {
 if (args.length == 1 && discord.storage.channel.hangman === undefined) {
     console.log("inside")
     const randomword = selectrandomword();
+    discord.storage.channel.hangman = {};
     discord.storage.channel.hangman.wordSelect = randomword[0];
     discord.storage.channel.hangman.hint = randomword[1];
     discord.storage.channel.hangman.errors = 0;
-    discord.storage.channel.guesses = [];
+    discord.storage.channel.hangman.guesses = [];
 }
 const hangmanStages = [`\n ------\n |    |\n      |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n |    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/     |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/ \\   |\n      |\n      |\n---------\n`];
 

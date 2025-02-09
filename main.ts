@@ -11,10 +11,11 @@ function selectrandomword() {
 }
 console.log(args);
 console.log(discord.storage.channel.wordSelect)
-if (args.length == 1 && discord.storage.channel.wordSelect === undefined) {
+if (args.length == 1 && discord.storage.channel.isGameOn !== true) {
     console.log("inside")
     const randomword = selectrandomword();
     discord.storage.channel.wordSelect = randomword[0];
     discord.storage.channel.hint = randomword[1];
+    discord.storage.channel.isGameOn = true;
     return console.log(`the word has been selected. the hint is: ${discord.storage.channel.hint}`);
 }

@@ -9,7 +9,7 @@ function selectrandomword() {
     const randomindex = Math.floor(Math.random() * words.length);
     return words[randomindex];
 }
-if (args.length == 1 && discord.storage.channel.hangman.wordSelect === undefined) {
+if (args.length == 1 && discord.storage.channel.hangman === undefined) {
     console.log("inside")
     const randomword = selectrandomword();
     discord.storage.channel.hangman.wordSelect = randomword[0];

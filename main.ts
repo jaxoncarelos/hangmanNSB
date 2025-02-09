@@ -9,13 +9,27 @@ function selectrandomword() {
     const randomindex = Math.floor(Math.random() * words.length);
     return words[randomindex];
 }
-console.log(args.length);
-console.log(discord.storage.channel.wordSelect)
 if (args.length == 1 && discord.storage.channel.isGameOn !== true) {
     console.log("inside")
     const randomword = selectrandomword();
     discord.storage.channel.wordSelect = randomword[0];
     discord.storage.channel.hint = randomword[1];
     discord.storage.channel.isGameOn = true;
-    return console.log(`the word has been selected. the hint is: ${discord.storage.channel.hint}`);
+    discord.storage.channel.errors = 0;
+    discord.storage.channel.guesses = [];
 }
+const hangmanStages = [`\n ------\n |    |\n      |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n |    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/     |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/ \\   |\n      |\n      |\n---------\n`];
+
+function displayHangman() {
+    const errors = discord.storage.channel.errors;
+    return hangmanStages[errors];
+}
+const word = discord.storage.channel.wordSelect;
+if (word.includes(args)) {
+    discord.storage.channel.guesses.push(args);
+} else {
+    discord.storage.channel.errors++;
+}
+let displayedWord = word.split('').map(char => guesses.includes(char) ? char : ' _ ').join('');
+console.log(displayHangman);
+console.log(displayedWord);

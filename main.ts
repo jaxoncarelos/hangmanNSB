@@ -9,7 +9,7 @@ function selectrandomword() {
     const randomindex = Math.floor(Math.random() * words.length);
     return words[randomindex];
 }
-console.log(args);
+console.log(args.length);
 console.log(discord.storage.channel.wordSelect)
 if (args.length == 1 && discord.storage.channel.isGameOn !== true) {
     console.log("inside")

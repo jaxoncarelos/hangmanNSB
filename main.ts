@@ -30,6 +30,8 @@ if (word.includes(args)) {
 } else {
     discord.storage.channel.errors++;
 }
+let guesses = discord.storage.channel.guesses;
+
 let displayedWord = word.split('').map(char => guesses.includes(char) ? char : ' _ ').join('');
 console.log(displayHangman);
 console.log(displayedWord);

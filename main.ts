@@ -1,5 +1,5 @@
 const args = discord.variables.__args[0];
-console.log(discord.storage.channel.isGameOn);
+console.log(discord.storage.channel.wordSelect);
 if (args === undefined) {
     return console.log("please provide an initial character")
 }
@@ -9,12 +9,11 @@ function selectrandomword() {
     const randomindex = Math.floor(Math.random() * words.length);
     return words[randomindex];
 }
-if (args.length == 1 && discord.storage.channel.isGameOn !== true) {
+if (args.length == 1 && discord.storage.channel.wordSelect === undefined) {
     console.log("inside")
     const randomword = selectrandomword();
     discord.storage.channel.wordSelect = randomword[0];
     discord.storage.channel.hint = randomword[1];
-    discord.storage.channel.isGameOn = true;
     discord.storage.channel.errors = 0;
     discord.storage.channel.guesses = [];
 }

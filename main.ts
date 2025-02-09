@@ -9,27 +9,27 @@ function selectrandomword() {
     const randomindex = Math.floor(Math.random() * words.length);
     return words[randomindex];
 }
-if (args.length == 1 && discord.storage.channel.wordSelect === undefined) {
+if (args.length == 1 && discord.storage.channel.hangman.wordSelect === undefined) {
     console.log("inside")
     const randomword = selectrandomword();
-    discord.storage.channel.wordSelect = randomword[0];
-    discord.storage.channel.hint = randomword[1];
-    discord.storage.channel.errors = 0;
+    discord.storage.channel.hangman.wordSelect = randomword[0];
+    discord.storage.channel.hangman.hint = randomword[1];
+    discord.storage.channel.hangman.errors = 0;
     discord.storage.channel.guesses = [];
 }
 const hangmanStages = [`\n ------\n |    |\n      |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n      |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n |    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|    |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n      |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/     |\n      |\n      |\n---------\n`, `\n ------\n |    |\n O    |\n/|\\   |\n/ \\   |\n      |\n      |\n---------\n`];
 
 function displayHangman() {
-    const errors = discord.storage.channel.errors;
+    const errors = discord.storage.channel.hangman.errors;
     return hangmanStages[errors];
 }
-const word = discord.storage.channel.wordSelect;
+const word = discord.storage.channel.hangman.wordSelect;
 if (word.includes(args)) {
-    discord.storage.channel.guesses.push(args);
+    discord.storage.channel.hangman.guesses.push(args);
 } else {
-    discord.storage.channel.errors++;
+    discord.storage.channel.hangman.errors++;
 }
 
-let displayedWord = word.split('').map(char => discord.storage.channel.guesses.includes(char) ? char : ' _ ').join('');
+let displayedWord = word.split('').map(char => discord.storage.channel.hangman.guesses.includes(char) ? char : ' _ ').join('');
 console.log(displayHangman);
 console.log(displayedWord);

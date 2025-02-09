@@ -1,5 +1,5 @@
 const args = discord.variables.__args[0];
-
+console.log(discord.storage.channel.isGameOn);
 if (args === undefined) {
     return console.log("please provide an initial character")
 }
@@ -30,8 +30,7 @@ if (word.includes(args)) {
 } else {
     discord.storage.channel.errors++;
 }
-let guesses = discord.storage.channel.guesses;
 
-let displayedWord = word.split('').map(char => guesses.includes(char) ? char : ' _ ').join('');
+let displayedWord = word.split('').map(char => discord.storage.channel.guesses.includes(char) ? char : ' _ ').join('');
 console.log(displayHangman);
 console.log(displayedWord);
